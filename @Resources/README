@@ -1,0 +1,42 @@
+Creamsicle is a Rainmeter skin that displays realtime hardware values!
+
+Why use it?
+Utilizing Rainmeter the values can be displayed
+in a nice fashion as well as very discrete values
+such as specific core voltages may be read using
+HWiNFO!
+
+Dependicies:
+Rainmeter: https://www.rainmeter.net/
+HWiNFO64: https://www.hwinfo.com/download.php
+
+Hopefully not many, but depending on your hardware setup
+variables may need to be changed to work properly.
+To do so modify the values in the HWiNFO.inc with the values 
+in the HWiNFOSharedMemoryViewer. This may take some digging around.
+
+Example:
+I want to read the clock speed of my cpu's second core.
+In HWiNFOSharedMemoryViewer I find my CPU, and Core #1 Clock:
+Here we see the CPU's ID and Instance, as well as Core #1's 
+ID, Type, Units, Current, Minimum, Maximum, Average
+Modify the values in HWiNFO.inc appropriately:
+These values may be different for you!
+CPU0-SID=0xf0000300
+CPU0-SIN=0x0
+CPU0-COR1-CLK=0x6000001
+
+Then in CPU.inc I make a as meter lookup for ease
+[CPU0_COR1_CLK]
+Measure=Plugin
+Plugin=HWiNFO.dll
+HWiNFOSensorID=#CPU0-SID#
+HWiNFOSensorInstance=#CPU0-SIN#
+HWiNFOEntryId=#CPU0-COR1-CLK#
+HWiNFOType=CurrentValue
+
+Then have another meter display it when it's used
+[Meter_CPU0_COR1_CLK]
+Meter=String
+MeasureName=CPU0_COR1_CLK
+Text="%1"
