@@ -6,9 +6,10 @@ BookEndRightImage=#@#/Backgrounds/RightEnd.png
 
 Scale=1
 Width=(50*#Scale#)
-WidthOffset=13/64
+WidthOffset=11/64
 Height=(25*#Scale#)
 BookEndWidth=(4*#Scale#)
+BookEndHeight=(25*#Scale# - 1)
 
 [CreamsicleStyle]
 FontFace=Tahoma
